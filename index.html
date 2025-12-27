@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞机盘解析工具</title>
+    <!-- 引入Tailwind CSS简化样式 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        /* 自定义少量样式 */
+        .container {
+            max-width: 800px;
+        }
+        .result-card {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start pt-10 pb-20">
+    <div class="container bg-white rounded-lg shadow-md p-6 mx-4">
+        <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">
+            <i class="fa-solid fa-plane mr-2"></i>飞机盘链接解析
+        </h1>
+        
+        <!-- 输入区域 -->
+        <div class="mb-6">
+            <label for="panUrl" class="block text-gray-700 mb-2">飞机盘分享链接：</label>
+            <div class="flex gap-2">
+                <input 
+                    type="text" 
+                    id="panUrl" 
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="例如：https://share.feijipan.com/s/Q4V2a0gj"
+                >
+                <button 
+                    id="parseBtn" 
+                    class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                >
+                    <i class="fa-solid fa-magnifying-glass mr-1"></i>解析
+                </button>
+            </div>
+        </div>
+        
+        <!-- 加载状态 -->
+        <div id="loading" class="hidden text-center text-gray-600 mb-4">
+            <i class="fa-solid fa-spinner fa-spin mr-2"></i>解析中，请稍候...
+        </div>
+        
+        <!-- 错误提示 -->
+        <div id="errorMsg" class="hidden bg-red-100 text-red-700 p-3 rounded-lg mb-4"></div>
+        
+        <!-- 解析结果区域 -->
+        <div id="result" class="hidden result-card bg-gray-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">解析结果：</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <span class="text-gray-600">文件名：</span>
+                    <span id="fileName" class="font-medium"></span>
+                </div>
+                <div>
+                    <span class="text-gray-600">文件大小：</span>
+                    <span id="fileSize" class="font-medium"></span>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <span class="text-gray-600 block mb-2">下载链接：</span>
+                <div class="flex gap-2">
+                    <input 
+                        type="text" 
+                        id="downUrl" 
+                        class="flex-1 px-3 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent break-all"
+                        readonly
+                    >
+                    <button 
+                        id="copyBtn" 
+                        class="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+                    >
+                        <i class="fa-solid fa-copy mr-1"></i>复制
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="jx.js"></script>
+</body>
+</html>
