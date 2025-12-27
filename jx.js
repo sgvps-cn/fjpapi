@@ -1,3 +1,4 @@
+//星耀云官网：www.sgvps.cn  关注官网活动有机会免费得永久虚拟主机，不定时限量免费，免费，免费！
 // feijipan-parser.js
 // 等待DOM加载完成后执行
 document.addEventListener('DOMContentLoaded', () => {
